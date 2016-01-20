@@ -1,0 +1,3 @@
+---
+- name: RedHat | Ensure latest Apache installed
+  yum: name={{apache_package_name}} state=latest
