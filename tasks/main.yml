@@ -1,0 +1,5 @@
+---
+# tasks file for httpd
+
+- name: ensure latest httpd package installed
+  yum: name=httpd state=latest
