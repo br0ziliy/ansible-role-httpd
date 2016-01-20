@@ -1,5 +1,14 @@
 ---
 # tasks file for httpd
 
-- name: ensure latest httpd package installed
-  yum: name=httpd state=latest
+- name: Lookup distribution-specific variables
+  include_vars: "{{item}}"
+  with_first_found:
+      - "{{ansible_os_family}}.yml"
+      - default.yml
+
+- include: RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: Debian.yml
+  when: ansible_os_family == 'Debian'
